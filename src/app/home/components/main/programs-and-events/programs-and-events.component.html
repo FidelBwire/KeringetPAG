@@ -1,0 +1,49 @@
+<div class="" *ngIf="fullPageDisplay; else shortDisplay">
+   <app-pages-top [pageTitle]="'Programs &amp; Events'"></app-pages-top>
+   <div class="container-lg py-3">
+      <div class="row py-2 border">
+         <div class="col col-lg-8 mx-auto">
+            <app-weekly-programs></app-weekly-programs>
+         </div>
+      </div>
+      <div class="row py-2 border" *ngFor="let event of getEvents(4)">
+         <div class="col-md-2 text-center">
+            <p class="bg-primary p-2 text-white">
+            <span class="small">{{event.startDate | date:'d'}}</span><br/>
+            <span class="small">{{event.startDate | date:'MMM y'}}</span>
+            </p>
+         </div>
+         <div class="col-md-4 bg-secondary">
+            <!-- <img class="img-fluid" src="../../../../../assets/images/logo.png" alt=""> -->
+         </div>
+         <div class="col-md-6">
+            <p class="smaller py-0 my-0 border-bottom">
+               {{event.startDate | date:'M/d/yy h:mm a'}} - {{event.startDate | date:'M/d/yy h:mm a'}}
+            </p>
+            <h6 class="text-uppercase py-2 my-0 fw-bold">{{event.theme}}</h6>
+            <p class="">{{event.description}}</p>
+            <p class="small py-0 my-0">Venue: {{event.venue}}</p>
+            <p class="small py-0 my-0">Speaker: {{event.speaker}}</p>
+         </div>
+      </div>      
+   </div>
+</div>
+<ng-template #shortDisplay>
+   <div class="row pt-5 pb-2">
+      <h4 class="text-uppercase text-center">Programs & Events</h4>
+   </div>
+   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 text-white justify-content-between" id="programsAndEvents">
+      <div class="col col-lg-6 py-3 mx-auto" id="weeklyPograms">
+         <app-weekly-programs></app-weekly-programs>
+      </div>
+      <div class="col col-lg-3 mx-auto program my-auto" *ngFor="let event of getEvents(4)">
+         <h6 class="text-uppercase text-center">{{event.startDate | date:'mediumDate'}}</h6>
+         <h6 class="text-uppercase text-center">{{event.theme}}</h6>
+         <h6 class="text-center">Venue: {{event.venue}}</h6>
+         <h6 class="text-uppercase text-center">{{event.startDate | date:'E, h:mm a'}}</h6>
+         <div class="text-center">
+            <button class="btn btn-sm btn-outline-light" routerLink="programs">DETAILS</button>
+         </div>
+      </div>      
+   </div>
+</ng-template>

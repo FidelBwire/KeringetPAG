@@ -1,0 +1,13 @@
+<div class="" *ngIf="fullPageDisplay; else shortDisplay">
+   <app-pages-top [pageTitle]="'About Our Church'"></app-pages-top>
+   <div class="container-lg fs-5 fst-italic py-5">
+      {{about}}
+   </div>
+</div>
+<ng-template #shortDisplay>
+   <div class="p-4 mb-3 border rounded shadow">
+      <h4 class="font-italic">About Our Church</h4>
+      <p class="small justify-content-center mb-0 pb-1">{{about | string:253}}</p>
+      <a routerLink="about"><small>Learn More</small></a>
+   </div>
+</ng-template>
